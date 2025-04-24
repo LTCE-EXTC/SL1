@@ -1,0 +1,193 @@
+______________________________factorial:___________________________
+echo "Enter the Number"
+read num
+fact=1
+for((i=2;i<=num;i++))
+{
+  fact=$((fact*i))
+}
+echo "Factorial of a number is"
+echo $fact
+___________________________________________________________________
+                            last login
+                            #!/bin/bash
+
+# Script to display last login information
+
+echo "----------------------------------------"
+echo "Last Login Report - Generated on $(date)"
+echo "----------------------------------------"
+
+# Show last login of all users from /var/log/wtmp
+echo -e "\nLast login sessions (from 'last'):\n"
+last -a | head -n 20
+
+# Show last login time for each user
+echo -e "\nLast login for each user (from 'lastlog'):\n"
+lastlog
+
+echo -e "\nReport complete."
+___________________________________________________________________
+                            arithmatic
+                            
+                            #!/bin/sh
+
+echo -n "Enter the first number: "
+read x
+
+echo -n "Enter the second number: "
+read y
+
+z=$((x + y))
+echo "sum $z"
+
+a=$((x - y))
+echo "sub $a"
+
+b=$((x * y))
+echo "mul $b"
+
+c=$((x / y))
+echo "div $c"
+___________________________________________________________________
+
+                             counting 
+                             
+                             #!/bin/bash
+
+
+
+# Prompt user for the file name or path
+echo -n "Enter file name or path: "
+read fl
+echo ""
+
+# Check if the file exists and is a regular file
+if [[ ! -f "$fl" ]]; then
+    echo "File does not exist or is not a regular file."
+    exit 1
+fi
+
+# Count characters, words, lines, and exclamation marks
+char_count=$(wc -m < "$fl")
+word_count=$(wc -w < "$fl")
+line_count=$(wc -l < "$fl")
+exclamation_count=$(grep -o "!" "$fl" | wc -l)
+
+echo "Number of Characters: $char_count"
+echo "Number of Words: $word_count"
+echo "Number of Lines: $line_count"
+echo "Number of Exclamation Marks: $exclamation_count"
+___________________________________________________________________
+                                    log files
+                                    #!/usr/bin/bash
+
+
+echo ""
+
+echo -n "Enter Folder name or path : "
+read fl
+echo ""
+
+echo -n "Warning: Deleting logs may cause errors."
+echo ""
+
+# Check if the entered path is a directory
+if [ -d "$fl" ]; then
+    cd "$fl" && rm -f *.log
+    echo "Logs cleared successfully"
+else
+    echo "Error: $fl is not a valid directory."
+fi
+
+echo ""
+___________________________________________________________________
+                            add user
+                            #!/bin/bash
+
+echo "Enter new username:"
+read username
+
+# Check if user already exists
+if id "$username" &>/dev/null; then
+    echo "User '$username' already exists."
+    exit 1
+fi
+
+# Add the user
+sudo useradd -m "$username"
+
+if [ $? -eq 0 ]; then
+    echo "Enter password for $username:"
+    read -s password
+
+    # Set the password
+    echo "$username:$password" | sudo chpasswd
+    echo "User '$username' added successfully!"
+else
+    echo "Failed to add user."
+fi
+__________________________________________________________________
+                        hostname and ip
+                        #!/bin/bash
+
+echo "Enter the hostname to add:"
+read hostname
+
+echo "Enter the IP address:"
+read ip
+
+# Check if entry already exists
+if grep -q "$hostname" /etc/hosts; then
+    echo "Entry for '$hostname' already exists in /etc/hosts."
+else
+    echo "$ip    $hostname" | sudo tee -a /etc/hosts > /dev/null
+    echo "Entry added: $ip $hostname"
+fi
+___________________________________________________________________
+                             vowel and consonent
+#!/bin/bash
+
+echo "Enter a single alphabet:"
+read char
+
+# Convert to lowercase
+char=$(echo "$char" | tr '[:upper:]' '[:lower:]')
+
+# Check if it's a single alphabet character
+if [[ ! "$char" =~ ^[a-z]$ ]]; then
+    echo "Invalid input. Please enter a single alphabet."
+    exit 1
+fi
+
+# Check vowel or consonant
+if [[ "$char" =~ [aeiou] ]]; then
+    echo "$char is a vowel."
+else
+    echo "$char is a consonant."
+fi
+__________________________________________________________________
+                               samba server
+                               sudo apt upgrade
+                               sudo apt install samba
+                               sudo nano /etc/samba/smb.conf
+                               sudo service smbd start
+                               sudo ufw allow samba
+                               sudo smbpasswd -a computer
+                               mkdir -p /home/computer/shared
+                               cd /home/computer/shared
+                               echo "hi we are engineers" >>ltce.txt
+                               ls
+                               cat ltce.txt
+                               hostname -I
+
+
+
+
+
+
+
+                               
+
+
+
